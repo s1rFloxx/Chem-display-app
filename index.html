@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ChemViewer 3D</title>
+
+<link rel="stylesheet" href="style.css" />
+
+<!-- Three.js via CDN, loaded as an ES module -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="app">
+  <div id="viewport">
+    <div id="viewport-hint">Levé tlačítko: rotace · Kolečko: zoom</div>
+  </div>
+
+  <div id="panel">
+    <h1>ChemViewer 3D</h1>
+    <div class="subtitle">Vizualizátor molekul</div>
+
+    <div class="card">
+      <h2>Aktivní molekula</h2>
+      <select id="molecule-select" class="molecule-select">
+        <option value="water">Voda (H₂O)</option>
+        <option value="co2">Oxid uhličitý (CO₂)</option>
+        <option value="methane">Metan (CH₄)</option>
+        <option value="ammonia">Amoniak (NH₃)</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>Vlastnosti</h2>
+      <div class="row"><span class="label">Název:</span><span class="value" id="prop-name">—</span></div>
+      <div class="row"><span class="label">Vzorec:</span><span class="value" id="prop-formula">—</span></div>
+      <div class="row"><span class="label">Molární hmo.:</span><span class="value" id="prop-mass">—</span></div>
+      <div class="row"><span class="label">Geometrie:</span><span class="value" id="prop-geometry">—</span></div>
+      <div class="row"><span class="label">Úhel vazby:</span><span class="value" id="prop-angle">—</span></div>
+    </div>
+
+    <div class="card">
+      <h2>Legenda prvků (CPK)</h2>
+      <div id="legend-list"></div>
+    </div>
+
+    <div class="card">
+      <h2>Import dat</h2>
+      <button class="upload-btn" id="upload-btn">Nahrát .XYZ soubor</button>
+      <input type="file" id="file-input" accept=".xyz,.txt" />
+      <div id="upload-status"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
