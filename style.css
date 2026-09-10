@@ -1,162 +1,31 @@
+/* Světlý „laboratorní“ vzhled inspirovaný referenčním ball-and-stick modelem. */
 :root{
-  --bg-viewport: #0b0c0f;
-  --bg-panel: #14161b;
-  --bg-card: #1b1e24;
-  --border: #2a2d34;
-  --text-primary: #f2f3f5;
-  --text-secondary: #8b8f98;
-  --accent-blue: #3b82f6;
-  --accent-green: #4ade80;
-  --accent-red: #ef4444;
+  --bg-viewport:#ffffff; --bg-panel:#f6f7f9; --bg-card:#ffffff;
+  --border:#e1e4e8; --text-primary:#20242a; --text-secondary:#68717c;
+  --accent-blue:#2563eb; --accent-green:#15803d; --accent-red:#dc2626;
 }
-
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: var(--bg-viewport);
-  color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  overflow: hidden;
-}
-
-#app {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-}
-
-/* ---------- 3D viewport ---------- */
-#viewport {
-  flex: 1 1 auto;
-  position: relative;
-  background: radial-gradient(circle at 35% 30%, #14161c 0%, #0b0c0f 70%);
-}
-
-#viewport canvas { display: block; }
-
-#viewport-hint {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  font-size: 12px;
-  color: var(--text-secondary);
-  background: rgba(20,22,27,0.7);
-  padding: 6px 10px;
-  border-radius: 6px;
-  pointer-events: none;
-}
-
-/* ---------- Side panel ---------- */
-#panel {
-  width: 340px;
-  flex: 0 0 340px;
-  background: var(--bg-panel);
-  border-left: 1px solid var(--border);
-  padding: 24px 20px;
-  overflow-y: auto;
-}
-
-#panel h1 {
-  font-size: 22px;
-  margin: 0 0 2px 0;
-  color: #5b9dff;
-  letter-spacing: -0.01em;
-}
-
-#panel .subtitle {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-bottom: 20px;
-}
-
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
-
-.card h2 {
-  font-size: 13px;
-  margin: 0 0 12px 0;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 4px 0;
-  font-size: 13px;
-}
-
-.row .label { color: var(--text-secondary); }
-.row .value { color: var(--accent-green); font-weight: 600; text-align: right; }
-
-.molecule-select {
-  width: 100%;
-  background: #101216;
-  color: var(--text-primary);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 8px 10px;
-  font-size: 13px;
-  margin-bottom: 4px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 0;
-  font-size: 13px;
-}
-
-.legend-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  flex: 0 0 14px;
-  box-shadow: inset -2px -2px 3px rgba(0,0,0,0.3);
-}
-
-.upload-btn {
-  width: 100%;
-  background: var(--accent-blue);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.upload-btn:hover { background: #2f6fd8; }
-
-#file-input { display: none; }
-
-#upload-status {
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin-top: 8px;
-  min-height: 14px;
-}
-
-#upload-status.error { color: var(--accent-red); }
-#upload-status.ok { color: var(--accent-green); }
-
-/* scrollbar */
-#panel::-webkit-scrollbar { width: 8px; }
-#panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-
-@media (max-width: 720px) {
-  #app { flex-direction: column; }
-  #panel { width: 100%; flex: 0 0 auto; border-left: none; border-top: 1px solid var(--border); max-height: 45vh; }
-  #viewport { flex: 1 1 55vh; }
-}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;background:#fff;color:var(--text-primary);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow:hidden}
+#app{display:flex;height:100vh;width:100vw}
+#viewport{flex:1 1 auto;position:relative;background:#fff;min-width:0}
+#viewport canvas{display:block}
+#viewport-hint{position:absolute;bottom:16px;left:16px;font-size:12px;color:#737b85;background:rgba(255,255,255,.88);border:1px solid #e3e6ea;padding:7px 10px;border-radius:7px;pointer-events:none;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+#panel{width:360px;flex:0 0 360px;background:var(--bg-panel);border-left:1px solid var(--border);padding:24px 20px;overflow-y:auto;box-shadow:-4px 0 18px rgba(0,0,0,.04)}
+#panel h1{font-size:22px;margin:0 0 2px;color:#2563eb;letter-spacing:-.01em}
+#panel .subtitle{font-size:13px;color:var(--text-secondary);margin-bottom:20px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.025)}
+.card h2{font-size:13px;margin:0 0 12px;color:var(--text-primary);font-weight:650}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:4px 0;font-size:13px}
+.row .label{color:var(--text-secondary)} .row .value{color:var(--accent-green);font-weight:650;text-align:right}
+.molecule-select{width:100%;background:#fff;color:var(--text-primary);border:1px solid #d5dae0;border-radius:7px;padding:9px 10px;font-size:13px}
+.legend-item{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:13px}
+.legend-dot{width:14px;height:14px;border-radius:50%;flex:0 0 14px;box-shadow:inset -2px -2px 3px rgba(0,0,0,.25),0 1px 2px rgba(0,0,0,.12)}
+.pair-explanation{display:flex;align-items:center;gap:10px;color:var(--text-secondary);font-size:12px;line-height:1.45}
+.pair-dot{width:12px;height:12px;flex:0 0 12px;border-radius:50%;background:#fff;border:1px solid #d7dbe0;box-shadow:10px 0 0 #fff,10px 0 0 1px #d7dbe0;margin-right:10px}
+.warning-card{border-color:#e8c48b;background:#fffaf0;color:#8a5a16;font-size:12px;line-height:1.45}
+.upload-btn{width:100%;background:var(--accent-blue);color:white;border:0;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.upload-btn:hover{background:#1d4ed8} #file-input{display:none}
+#upload-status{font-size:11px;color:var(--text-secondary);margin-top:8px;min-height:14px}
+#upload-status.error{color:var(--accent-red)} #upload-status.ok{color:var(--accent-green)}
+#panel::-webkit-scrollbar{width:8px} #panel::-webkit-scrollbar-thumb{background:#d9dde2;border-radius:4px}
+@media(max-width:720px){#app{flex-direction:column}#panel{width:100%;flex:0 0 auto;border-left:0;border-top:1px solid var(--border);max-height:45vh}#viewport{flex:1 1 55vh}}

@@ -4,10 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ChemViewer 3D</title>
-
 <link rel="stylesheet" href="style.css" />
-
-<!-- Three.js via CDN, loaded as an ES module -->
+<!-- Three.js je zde přes CDN. README obsahuje postup pro lokální/offline kopii. -->
 <script type="importmap">
 {
   "imports": {
@@ -18,50 +16,52 @@
 </script>
 </head>
 <body>
-
 <div id="app">
+  <!-- 3D část aplikace -->
   <div id="viewport">
     <div id="viewport-hint">Levé tlačítko: rotace · Kolečko: zoom</div>
   </div>
 
+  <!-- Informační panel -->
   <div id="panel">
     <h1>ChemViewer 3D</h1>
     <div class="subtitle">Vizualizátor molekul</div>
 
     <div class="card">
       <h2>Aktivní molekula</h2>
-      <select id="molecule-select" class="molecule-select">
-        <option value="water">Voda (H₂O)</option>
-        <option value="co2">Oxid uhličitý (CO₂)</option>
-        <option value="methane">Metan (CH₄)</option>
-        <option value="ammonia">Amoniak (NH₃)</option>
-      </select>
+      <select id="molecule-select" class="molecule-select"></select>
     </div>
 
     <div class="card">
       <h2>Vlastnosti</h2>
       <div class="row"><span class="label">Název:</span><span class="value" id="prop-name">—</span></div>
       <div class="row"><span class="label">Vzorec:</span><span class="value" id="prop-formula">—</span></div>
-      <div class="row"><span class="label">Molární hmo.:</span><span class="value" id="prop-mass">—</span></div>
+      <div class="row"><span class="label">Molární hmotnost:</span><span class="value" id="prop-mass">—</span></div>
+      <div class="row"><span class="label">Hybridizace:</span><span class="value" id="prop-hybridization">—</span></div>
       <div class="row"><span class="label">Geometrie:</span><span class="value" id="prop-geometry">—</span></div>
-      <div class="row"><span class="label">Úhel vazby:</span><span class="value" id="prop-angle">—</span></div>
+      <div class="row"><span class="label">Úhel vazeb:</span><span class="value" id="prop-angle">—</span></div>
     </div>
 
     <div class="card">
-      <h2>Legenda prvků (CPK)</h2>
+      <h2>Legenda atomů</h2>
       <div id="legend-list"></div>
     </div>
 
     <div class="card">
-      <h2>Import dat</h2>
+      <h2>Elektronové páry</h2>
+      <div class="pair-explanation"><span class="pair-dot"></span><span>Průsvitný fialový lalok se dvěma bílými elektrony znázorňuje volný elektronový pár, podobně jako v referenčním modelu.</span></div>
+    </div>
+
+    <div class="card warning-card" id="teacher-warning" hidden></div>
+
+    <div class="card">
+      <h2>Import XYZ</h2>
       <button class="upload-btn" id="upload-btn">Nahrát .XYZ soubor</button>
       <input type="file" id="file-input" accept=".xyz,.txt" />
       <div id="upload-status"></div>
     </div>
   </div>
 </div>
-
 <script type="module" src="script.js"></script>
-
 </body>
 </html>
