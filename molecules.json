@@ -1,0 +1,658 @@
+{
+  "version": 3,
+  "description": "Databáze molekul pro ChemViewer 3D. Pozice jsou v přibližných Å; úhly jsou nastavené podle školních údajů. 3D styl odpovídá dodané referenci: lesklé koule, barevně rozdělené válcové vazby a průsvitné laloky pro volné elektronové páry.",
+  "elements": {
+    "H": {
+      "name": "Vodík",
+      "color": "#FFFFFF",
+      "radius": 0.32
+    },
+    "C": {
+      "name": "Uhlík",
+      "color": "#4A4A4A",
+      "radius": 0.6
+    },
+    "N": {
+      "name": "Dusík",
+      "color": "#3B82F6",
+      "radius": 0.58
+    },
+    "O": {
+      "name": "Kyslík",
+      "color": "#FF3B30",
+      "radius": 0.55
+    },
+    "F": {
+      "name": "Fluor",
+      "color": "#90E050",
+      "radius": 0.5
+    },
+    "Cl": {
+      "name": "Chlor",
+      "color": "#1FF01F",
+      "radius": 0.52
+    },
+    "S": {
+      "name": "Síra",
+      "color": "#FFD123",
+      "radius": 0.58
+    },
+    "P": {
+      "name": "Fosfor",
+      "color": "#FF8000",
+      "radius": 0.58
+    },
+    "Ba": {
+      "name": "Baryum",
+      "color": "#C7C7C7",
+      "radius": 0.7
+    }
+  },
+  "molecules": {
+    "barium_fluoride": {
+      "name": "Fluorid barnatý",
+      "formula": "BaF₂",
+      "molarMass": "175.32 g/mol",
+      "hybridization": "sp",
+      "geometry": "Lineární",
+      "bondAngle": "180°",
+      "teacherSpecification": "h: sp, tvar: lineární",
+      "notes": "Model podle zadaných školních požadavků.",
+      "atoms": [
+        {
+          "element": "Ba",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            1.75,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            -1.75,
+            0,
+            0
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 1
+        }
+      ],
+      "lonePairs": []
+    },
+    "barium_chloride": {
+      "name": "Chlorid barnatý",
+      "formula": "BaCl₂",
+      "molarMass": "208.23 g/mol",
+      "hybridization": "sp2",
+      "geometry": "Trigonální planární / rovnostranný trojúhelník",
+      "bondAngle": "120°",
+      "teacherSpecification": "h: sp2, tvar: rovnostranný trojúhelník/trigonální",
+      "warning": "Pozor: BaCl₂ obsahuje Ba + 2 Cl, takže skutečný třívrcholový trigonální model nesedí na vzorec BaCl₂. Tato položka je ponechána přesně podle zadání učitele; doporučuji ověřit, zda nemělo jít o BCl₃ (chlorid boritý).",
+      "atoms": [
+        {
+          "element": "Ba",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "Cl",
+          "position": [
+            1.85,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "Cl",
+          "position": [
+            -0.925,
+            1.602,
+            0
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 1
+        }
+      ],
+      "lonePairs": []
+    },
+    "methane": {
+      "name": "Methan",
+      "formula": "CH₄",
+      "molarMass": "16.04 g/mol",
+      "hybridization": "sp3",
+      "geometry": "Čtyřstěn / tetraedr",
+      "bondAngle": "109.47°",
+      "teacherSpecification": "h: sp3, tvar: čtyřstěn/tetraedr",
+      "atoms": [
+        {
+          "element": "C",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            0.6293117934166922,
+            0.6293117934166922,
+            0.6293117934166922
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            -0.6293117934166922,
+            -0.6293117934166922,
+            0.6293117934166922
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            -0.6293117934166922,
+            0.6293117934166922,
+            -0.6293117934166922
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            0.6293117934166922,
+            -0.6293117934166922,
+            -0.6293117934166922
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 3,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 4,
+          "order": 1
+        }
+      ],
+      "lonePairs": []
+    },
+    "phosphorus_pentachloride": {
+      "name": "Chlorid fosforečný",
+      "formula": "PCl₅",
+      "molarMass": "208.24 g/mol",
+      "hybridization": "sp3d",
+      "geometry": "Trojboký dvojjehlan / trigonální bipyramida",
+      "bondAngle": "90°, 120° a 180°",
+      "teacherSpecification": "h: sp3d, tvar: trojboký dvojjehlan/trigonální bipyramida",
+      "atoms": [
+        {
+          "element": "P",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "Cl",
+          "position": [
+            0,
+            0,
+            1.55
+          ]
+        },
+        {
+          "element": "Cl",
+          "position": [
+            0,
+            0,
+            -1.55
+          ]
+        },
+        {
+          "element": "Cl",
+          "position": [
+            1.55,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "Cl",
+          "position": [
+            -0.775,
+            1.34233937586588,
+            0
+          ]
+        },
+        {
+          "element": "Cl",
+          "position": [
+            -0.775,
+            -1.34233937586588,
+            0
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 3,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 4,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 5,
+          "order": 1
+        }
+      ],
+      "lonePairs": []
+    },
+    "sulfur_hexafluoride": {
+      "name": "Fluorid sírový",
+      "formula": "SF₆",
+      "molarMass": "146.06 g/mol",
+      "hybridization": "sp3d2",
+      "geometry": "Osmistěn / oktaedr",
+      "bondAngle": "90° a 180°",
+      "teacherSpecification": "h: sp3d2, tvar: osmistěn/oktaedr",
+      "atoms": [
+        {
+          "element": "S",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            1.56,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            -1.56,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            0,
+            1.56,
+            0
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            0,
+            -1.56,
+            0
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            0,
+            0,
+            1.56
+          ]
+        },
+        {
+          "element": "F",
+          "position": [
+            0,
+            0,
+            -1.56
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 3,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 4,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 5,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 6,
+          "order": 1
+        }
+      ],
+      "lonePairs": []
+    },
+    "carbon_dioxide": {
+      "name": "Oxid uhličitý",
+      "formula": "CO₂",
+      "molarMass": "44.01 g/mol",
+      "hybridization": "sp",
+      "geometry": "Lineární",
+      "bondAngle": "180°",
+      "teacherSpecification": "h: sp, tvar: lineární; znázornit dvojné vazby",
+      "atoms": [
+        {
+          "element": "C",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "O",
+          "position": [
+            1.16,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "O",
+          "position": [
+            -1.16,
+            0,
+            0
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 2
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 2
+        }
+      ],
+      "lonePairs": []
+    },
+    "sulfur_dioxide": {
+      "name": "Oxid siřičitý",
+      "formula": "SO₂",
+      "molarMass": "64.07 g/mol",
+      "hybridization": "sp2",
+      "geometry": "Lomený",
+      "bondAngle": "119.3°",
+      "teacherSpecification": "h: sp2, tvar: lomený; znázornit dvojné vazby a volný elektronový pár",
+      "atoms": [
+        {
+          "element": "S",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "O",
+          "position": [
+            0.722551667501634,
+            1.2340255620491043,
+            0
+          ]
+        },
+        {
+          "element": "O",
+          "position": [
+            0.722551667501634,
+            -1.2340255620491043,
+            0
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 2
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 2
+        }
+      ],
+      "lonePairs": [
+        {
+          "atom": 0,
+          "count": 1,
+          "directions": [
+            [
+              -1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "ammonia": {
+      "name": "Amoniak",
+      "formula": "NH₃",
+      "molarMass": "17.03 g/mol",
+      "hybridization": "sp3",
+      "geometry": "Trigonální pyramida",
+      "bondAngle": "107.0°",
+      "teacherSpecification": "h: sp3, tvar: trigonální pyramida; znázornit volný elektronový pár",
+      "atoms": [
+        {
+          "element": "N",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            1.0002775147970715,
+            0.0,
+            0.13980305215335728
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            -0.5001387573985355,
+            0.8662657386486287,
+            0.13980305215335728
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            -0.5001387573985362,
+            -0.8662657386486283,
+            0.13980305215335728
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 3,
+          "order": 1
+        }
+      ],
+      "lonePairs": [
+        {
+          "atom": 0,
+          "count": 1,
+          "directions": [
+            [
+              0,
+              0,
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    "water": {
+      "name": "Voda",
+      "formula": "H₂O",
+      "molarMass": "18.015 g/mol",
+      "hybridization": "sp3",
+      "geometry": "Lomený",
+      "bondAngle": "104.5°",
+      "teacherSpecification": "h: sp3, tvar: lomený; znázornit volné elektronové páry",
+      "atoms": [
+        {
+          "element": "O",
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            0.5877285888330713,
+            0.7590619907940895,
+            0
+          ]
+        },
+        {
+          "element": "H",
+          "position": [
+            0.5877285888330713,
+            -0.7590619907940895,
+            0
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "from": 0,
+          "to": 1,
+          "order": 1
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "order": 1
+        }
+      ],
+      "lonePairs": [
+        {
+          "atom": 0,
+          "count": 2,
+          "directions": [
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              -1
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}
