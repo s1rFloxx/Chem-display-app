@@ -1,7 +1,7 @@
 /* Světlý „laboratorní“ vzhled inspirovaný referenčním ball-and-stick modelem. */
 :root{
-  --bg-viewport:#ffffff; --bg-panel:#f6f7f9; --bg-card:#ffffff;
-  --border:#e1e4e8; --text-primary:#20242a; --text-secondary:#68717c;
+  --bg-viewport:#0b0d10; --bg-panel:#14171c; --bg-card:#1b1f26;
+  --border:#2a2f38; --text-primary:#f1f3f5; --text-secondary:#9aa3ad;
   --accent-blue:#2563eb; --accent-green:#15803d; --accent-red:#dc2626;
 }
 *{box-sizing:border-box}
