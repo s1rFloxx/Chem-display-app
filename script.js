@@ -39,7 +39,7 @@ camera.position.set(0,0,7);
 const renderer=new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 renderer.setSize(viewportEl.clientWidth,viewportEl.clientHeight);
-renderer.setClearColor(0xffffff,1);
+renderer.setClearColor(0x000000,0);
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure=1.15;
