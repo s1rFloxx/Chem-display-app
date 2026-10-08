@@ -15,6 +15,12 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
  */
 
 const viewportEl=document.getElementById("viewport");
+const appEl=document.getElementById("app");
+const panel=document.getElementById("panel");
+const infoButton=document.getElementById("info-button");
+const closePanelButton=document.getElementById("close-panel-button");
+const panelBackdrop=document.getElementById("panel-backdrop");
+const mobileLayout=window.matchMedia("(max-width: 720px)");
 const moleculeSelect=document.getElementById("molecule-select");
 const propName=document.getElementById("prop-name");
 const propFormula=document.getElementById("prop-formula");
@@ -162,30 +168,71 @@ function makeBond(start,end,order=1,startElement="C",endElement="C"){
 }
 
 function makeLonePair(position,direction,atomRadius){
-  /*
-  * Volný elektronový pár je zobrazen jako průsvitný lalok.
-   */
   const group=new THREE.Group();
   const dir=new THREE.Vector3(...direction).normalize();
 
-  const lobeRadiusAlongDirection=0.66*1.28;
-  const centerOffset=atomRadius+lobeRadiusAlongDirection+0.05;
+  const cloudRadius=0.24;
+  const cloudLength=cloudRadius*1.2;
+  const connectorLength=0.16;
+  const centerOffset=atomRadius+connectorLength+cloudLength;
   const center=new THREE.Vector3(...position).addScaledVector(dir,centerOffset);
-  const lobeGeometry=new THREE.SphereGeometry(0.66,40,28);
-  const lobeMaterial=new THREE.MeshPhysicalMaterial({
-    color:0x8d8ff5,
-    transparent:true,
-    opacity:0.38,
-    roughness:0.12,
-    transmission:0.15,
-    thickness:0.35,
-    depthWrite:false
+  let pairAxis=new THREE.Vector3().crossVectors(dir,new THREE.Vector3(0,1,0));
+  if(pairAxis.lengthSq()<0.001){
+    pairAxis=new THREE.Vector3().crossVectors(dir,new THREE.Vector3(1,0,0));
+  }
+  pairAxis.normalize();
+
+  const connectorStart=new THREE.Vector3(...position).addScaledVector(dir,atomRadius*0.82);
+  const connectorEnd=center.clone().addScaledVector(dir,-cloudLength*0.82);
+  const connectorDirection=new THREE.Vector3().subVectors(connectorEnd,connectorStart);
+  const connector=new THREE.Mesh(
+    new THREE.CylinderGeometry(0.045,0.045,connectorDirection.length(),20),
+    new THREE.MeshPhysicalMaterial({
+      color:0x9b8bc7,
+      transparent:true,
+      opacity:0.18,
+      roughness:0.18,
+      transmission:0.08,
+      thickness:0.25,
+      depthWrite:false
+    })
+  );
+  connector.position.copy(connectorStart).add(connectorEnd).multiplyScalar(0.5);
+  connector.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0,1,0),
+    connectorDirection.normalize()
+  );
+  group.add(connector);
+
+  const cloud=new THREE.Mesh(
+    new THREE.SphereGeometry(cloudRadius,32,24),
+    new THREE.MeshPhysicalMaterial({
+      color:0x9b8bc7,
+      transparent:true,
+      opacity:0.18,
+      roughness:0.18,
+      transmission:0.08,
+      thickness:0.25,
+      depthWrite:false
+    })
+  );
+  cloud.position.copy(center);
+  cloud.scale.set(0.82,0.82,1.2);
+  cloud.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),dir);
+  group.add(cloud);
+
+  const electronGeometry=new THREE.SphereGeometry(0.065,24,18);
+  const electronMaterial=new THREE.MeshStandardMaterial({
+    color:0xc3b7e4,
+    roughness:0.18,
+    metalness:0.03
   });
-  const lobe=new THREE.Mesh(lobeGeometry,lobeMaterial);
-  lobe.position.copy(center);
-  lobe.scale.set(0.92,0.92,1.28);
-  lobe.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),dir);
-  group.add(lobe);
+  for(const side of [-1,1]){
+    const electron=new THREE.Mesh(electronGeometry,electronMaterial);
+    electron.position.copy(center).addScaledVector(pairAxis,side*0.075);
+    group.add(electron);
+  }
+
   return group;
 }
 
@@ -287,7 +334,32 @@ function loadMolecule(key){
 
 moleculeSelect.addEventListener("change",event=>{
   loadMolecule(event.target.value);
+  if(mobileLayout.matches) setInfoPanelOpen(false,true);
 });
+
+function setInfoPanelOpen(open,restoreFocus=false){
+  const isOpen=mobileLayout.matches && open;
+  appEl.classList.toggle("menu-open",isOpen);
+  panel.classList.toggle("is-open",isOpen);
+  panel.setAttribute("aria-hidden",String(mobileLayout.matches && !isOpen));
+  panel.inert=mobileLayout.matches && !isOpen;
+  infoButton.setAttribute("aria-expanded",String(isOpen));
+  panelBackdrop.hidden=!isOpen;
+
+  if(isOpen) closePanelButton.focus();
+  else if(restoreFocus && mobileLayout.matches) infoButton.focus();
+}
+
+infoButton.addEventListener("click",()=>setInfoPanelOpen(true));
+closePanelButton.addEventListener("click",()=>setInfoPanelOpen(false,true));
+panelBackdrop.addEventListener("click",()=>setInfoPanelOpen(false,true));
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape" && panel.classList.contains("is-open")){
+    setInfoPanelOpen(false,true);
+  }
+});
+mobileLayout.addEventListener("change",()=>setInfoPanelOpen(false));
+setInfoPanelOpen(false);
 
 /* -------------------- XYZ import -------------------- */
 function setUploadStatus(message,type=""){

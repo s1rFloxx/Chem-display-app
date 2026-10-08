@@ -32,6 +32,7 @@ body {
   display: flex;
   height: 100vh;
   width: 100vw;
+  position: relative;
 }
 
 #viewport {
@@ -59,6 +60,10 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
+.mobile-hint {
+  display: none;
+}
+
 #panel {
   width: 360px;
   flex: 0 0 360px;
@@ -67,6 +72,19 @@ body {
   padding: 24px 20px;
   overflow-y: auto;
   box-shadow: -4px 0 18px rgba(0, 0, 0, 0.3);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.close-panel-button,
+.info-button,
+.panel-backdrop {
+  display: none;
 }
 
 #panel h1 {
@@ -158,14 +176,42 @@ body {
 }
 
 .pair-dot {
-  width: 12px;
-  height: 12px;
-  flex: 0 0 12px;
+  position: relative;
+  width: 30px;
+  height: 16px;
+  flex: 0 0 30px;
+  background: linear-gradient(#9b8bc7, #9b8bc7) left center / 17px 3px no-repeat;
+}
+
+.pair-dot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  box-shadow: 10px 0 0 #f8fafc, 10px 0 0 1px #cbd5e1;
-  margin-right: 10px;
+  background: rgba(155, 139, 199, 0.22);
+  border: 1px solid rgba(195, 183, 228, 0.8);
+}
+
+.pair-dot span {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c3b7e4;
+  box-shadow: inset -1px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.pair-dot span:first-child {
+  right: 8px;
+}
+
+.pair-dot span:last-child {
+  right: 2px;
 }
 
 .warning-card {
@@ -225,19 +271,132 @@ body {
 }
 
 @media (max-width: 720px) {
+  html,
+  body {
+    height: 100%;
+    overscroll-behavior: none;
+  }
+
   #app {
-    flex-direction: column;
+    display: block;
+    height: 100vh;
+    height: 100dvh;
   }
 
   #panel {
-    width: 100%;
-    flex: 0 0 auto;
-    border-left: 0;
-    border-top: 1px solid var(--border);
-    max-height: 45vh;
+    position: fixed;
+    z-index: 21;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(360px, 88vw);
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    padding: calc(20px + env(safe-area-inset-top)) 18px calc(20px + env(safe-area-inset-bottom));
+    border: 0;
+    border-left: 1px solid var(--border);
+    transform: translateX(102%);
+    visibility: hidden;
+    transition: transform 220ms ease, visibility 220ms;
+    box-shadow: -8px 0 28px rgba(0, 0, 0, 0.45);
+  }
+
+  #panel.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 220ms ease;
+  }
+
+  .panel-header {
+    align-items: flex-start;
+  }
+
+  .close-panel-button {
+    display: block;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin: -8px -8px 0 0;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #0d1117;
+    color: var(--text-primary);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .info-button {
+    display: block;
+    position: fixed;
+    z-index: 22;
+    top: calc(12px + env(safe-area-inset-top));
+    right: calc(12px + env(safe-area-inset-right));
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #536171;
+    border-radius: 50%;
+    background: rgba(17, 21, 27, 0.94);
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 650;
+    line-height: 1;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #app.menu-open .info-button {
+    visibility: hidden;
+  }
+
+  .panel-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.48);
+    cursor: default;
+  }
+
+  #upload-card {
+    display: none;
   }
 
   #viewport {
-    flex: 1 1 55vh;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #viewport-hint {
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: calc(12px + env(safe-area-inset-left));
+  }
+
+  .desktop-hint {
+    display: none;
+  }
+
+  .mobile-hint {
+    display: inline;
+  }
+
+  .molecule-select {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .upload-btn {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #panel {
+    transition: none;
   }
 }

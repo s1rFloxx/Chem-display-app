@@ -19,13 +19,26 @@
 <div id="app">
   <!-- 3D část aplikace -->
   <div id="viewport">
-    <div id="viewport-hint">Levé tlačítko: rotace · Kolečko: zoom</div>
+    <div id="viewport-hint">
+      <span class="desktop-hint">Levé tlačítko: rotace · Kolečko: zoom</span>
+      <span class="mobile-hint">Tažením otáčejte · Sevřením přibližujte</span>
+    </div>
   </div>
 
+  <button id="info-button" class="info-button" type="button" aria-label="Informace o molekule" aria-controls="panel" aria-expanded="false">
+    i
+  </button>
+  <button id="panel-backdrop" class="panel-backdrop" type="button" aria-label="Zavřít informační nabídku" hidden></button>
+
   <!-- Informační panel -->
-  <div id="panel">
-    <h1>ChemViewer 3D</h1>
-    <div class="subtitle">Vizualizátor molekul</div>
+  <aside id="panel" aria-label="Informace o molekule" aria-hidden="false">
+    <div class="panel-header">
+      <div>
+        <h1>ChemViewer 3D</h1>
+        <div class="subtitle">Vizualizátor molekul</div>
+      </div>
+      <button id="close-panel-button" class="close-panel-button" type="button" aria-label="Zavřít informační nabídku">×</button>
+    </div>
 
     <div class="card">
       <h2>Aktivní molekula</h2>
@@ -49,12 +62,12 @@
 
     <div class="card">
       <h2>Elektronové páry</h2>
-        <div class="pair-explanation"><span class="pair-dot"></span><span>Průsvitný fialový lalok znázorňuje volný elektronový pár.</span></div>
+        <div class="pair-explanation"><span class="pair-dot" aria-hidden="true"><span></span><span></span></span><span>Průsvitný lalok se dvěma kuličkami znázorňuje volný elektronový pár.</span></div>
     </div>
 
     <div class="card warning-card" id="teacher-warning" hidden></div>
 
-    <div class="card">
+    <div class="card" id="upload-card">
       <h2>Import XYZ</h2>
       <button class="upload-btn" id="upload-btn">Nahrát .XYZ soubor</button>
       <input type="file" id="file-input" accept=".xyz,.txt" />
